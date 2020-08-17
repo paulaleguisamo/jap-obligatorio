@@ -13,41 +13,27 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    html, body{
-      height: 100%;
-    }
-
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
-    }
-
-    .signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-    }
-  </style>
+  <link href="css/css-login.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 16/08/2020) -> Punto 3 y 4.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+    <form action="" class="formlogin" id="formularioregistro">
+      <img src="img/login.png" alt="logo-login">
+      <h1>Please sign in</h1> <br>
+      <label for="email" class="labelNone">Email Address</label>
+      <input type="text" name=email id="email" class="form-element" placeholder="Email Address" required autofocus>
+      <br>
+      <label for="password" class="labelNone">Password</label>
+      <input type="password" name=password id="password" class="form-element" placeholder="Password" required>
+      <br>
+      <input type="checkbox" name="remember" id="remember"><label for="remember">Remember Me</label>
+      <br>
+      <input type="submit" class="submit">
+    </form>
   </div>
-
   <script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
+
 </html>

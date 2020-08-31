@@ -139,3 +139,24 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.rango {
+  display: block;
+}
+
+.busqueda {
+  width: auto;
+  position: relative;
+  display: inline-block;
+  
+}
+
+.formulario {
+  display: inline-block;
+  margin-left: 42%;
+}
+
+
+
+
+

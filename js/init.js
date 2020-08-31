@@ -42,12 +42,22 @@ var getJSONData = function (url) {
 
 
 if (
-  !window.location.href.endsWith("login.html") && !sessionStorage.getItem("login")) {
+  !window.location.href.endsWith("login.html") &&
+  !sessionStorage.getItem("login")) {
   window.location.href = 'login.html'
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+
 document.addEventListener("DOMContentLoaded", function (e) {
+  let userLogged = sessionStorage.getItem("login");
+  document.getElementById("usuario").innerHTML = localStorage.getItem("cuenta");
+
 });
+
+
+var nombreDeUsuario = document.createElement("a");
+nombreDeUsuario.setAttribute("id", "usuario");
+nombreDeUsuario.setAttribute("class", "py-2 d-none d-md-inline-block");
+nombreDeUsuario.setAttribute("href", "my-profile.html");
+var element = document.getElementById("menu");
+element.appendChild(nombreDeUsuario);

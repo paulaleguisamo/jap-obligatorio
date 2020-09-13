@@ -151,11 +151,61 @@ a.custom-card:hover {
   
 }
 
-.formulario {
+.formulariodebusqueda {
   display: inline-block;
   margin-left: 42%;
 }
 
+
+.usuario { 
+  font-weight: bold;
+  text-transform: capitalize
+}
+
+
+.date { 
+  font-style: italic;
+  font-size: 75%;
+}
+
+#estrellas { 
+  color:#FFDF00;
+  
+}
+
+.rating {
+  float:left;
+}
+.rating span { float:right; position:relative; }
+.rating span input {
+  position:absolute;
+  top:0px;
+  left:0px;
+  opacity:0;
+}
+.rating span label {
+  background: url("../img/regular.jpg"); 
+  background-repeat: no-repeat;
+  display:inline-block;
+  width:30px;
+  height:30px;
+  text-align:center;
+  color:#FFF;
+  background-size: 30px;
+  
+  
+}
+.rating span:hover ~ span label,
+.rating span:hover label,
+.rating span.checked label,
+.rating span.checked ~ span label {
+  background: url("../img/solid.jpg");
+  background-repeat: no-repeat;
+  color:#FFF;
+  width:30px;
+  height:30px;
+  background-size: 30px;
+}
 
 
 

@@ -3,7 +3,7 @@ const ORDER_DSC_BY_COST = "COST_DSC";
 const ORDER_DESC_BY_SOLD_COUNT = "SOLD_COUNT";
 const ORDER_BY_PROD_COST = "PRECIO.";
 
-var SearchnewArray = PRODUCTS_URL;
+var products = [];
 var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minCost = undefined;
@@ -52,7 +52,7 @@ function showProductsList() {
             ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
 
             htmlContentToAppend += `
-            <a href="products-info.html" class="list-group-item list-group-item-action">
+            <a href="product-info.html?`+ products.name + `" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + products.imgSrc + `" alt="` + products.description + `" class="img-thumbnail">
@@ -235,18 +235,23 @@ document.getElementById("sortLimpiar").addEventListener("click", function () {
 
 });
 
+var arrayOriginal = currentProductsArray;
+
 document.getElementById("searchBar").addEventListener("keyup", function () {
     filterSearch = document.getElementById("searchBar").value;
-
-    //console.log(buscador);
+    
+    //console.log(currentProductsArray);
     if (filterSearch != undefined) {
-        currentProductsArray =
-            currentProductsArray.filter(function (elemento) {
-                //console.log(elemento)
-                return elemento.name.includes(filterSearch)
-            })
+        arrayOriginal = currentProductsArray;
+        currentProductsArray = currentProductsArray.filter(function (elemento) {
+            console.log(currentProductsArray);
+            return elemento.name.toLowerCase().includes(filterSearch.toLowerCase())
+        })
     }
     showProductsList();
-    console.log(currentProductsArray);
+
+currentProductsArray = arrayOriginal;
+
+    //console.log(arrayOriginal);
 });
 

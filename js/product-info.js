@@ -1,12 +1,12 @@
-var product = {};
-var variable = {};
+var product = "";
+var variable = "";
+var productosRelacionado = "";
+var products = "";
 
-
-//Titulo ccon parametros de URL
+//Titulo de producto con los parametros URL
 let titulo = document.getElementById("productName");
 
 function getQueryVariable(variable) {
-
     var query = window.location.search.substring(1);
     var vars = query.split("%20");
     var titulo = vars.toString();
@@ -17,61 +17,70 @@ function getQueryVariable(variable) {
 let name = getQueryVariable(variable)
 titulo.innerHTML = name;
 
-//Imagenes de producto
+//Imagen de productos (estilo carrusel)
 function showImagesGallery(array) {
     let htmlContentToAppend = "";
+    let htmlContentToAppend02 = "";
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length - 2; i++) {
         let imageSrc = array[i];
 
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+                 <img class="img-fluid img-thumbnail" src="`+ imageSrc + `" alt="">
+             </div>
+        </div>
+        `
+        document.getElementById("productImagen").innerHTML = htmlContentToAppend;
+    }
+    for (let i = 3; i < array.length; i++) {
+        let imageSrc = array[i];
+
+        htmlContentToAppend02 += `
+        <div class="col-lg-3 col-md-4 col-6">
+            <div class="d-block mb-4 h-100">
+                 <img class="img-fluid img-thumbnail" src="`+ imageSrc + `" alt="">
             </div>
         </div>
         `
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        document.getElementById("productImagen-2").innerHTML = htmlContentToAppend02;
     }
 }
 
-
 //Productos relacionados 
-
-var products = "";
-//console.log(nuevoArray);
-function newArray(array) {
+function newArrayRelacionados(array) {
     let htmlProductsToAppend = "";
+
     for (let p = 1; p < array.length; p++) {
         products = array[p];
 
-        array.splice(2, 1);
 
-        //console.log(products);
-        // console.log(p);
-        htmlProductsToAppend += `
+        if (productosRelacionado.includes(p)) {
+
+            htmlProductsToAppend += `
 
         <a href="product-info.html?`+ products.name + `" class="list-group-item list-group-item-action">
-        <div class="row relacionado">
+        <div class="row">
             <div class="col-3">
                 <img src="` + products.imgSrc + `" alt="` + products.description + `" class="img-thumbnail">
             </div>
             <div class="col">
                 <div class="d-flex w-100 justify-content-between">
                     <h4 class="mb-1">`+ products.name + " " + " - " + products.currency + " " + products.cost + `</h4>
-                    <small class="text-muted">` + products.soldCount + " " + `productos vendidos </small>
                 </div>
                 <p class="mb-1">` + products.description + `</p>
             </div>
         </div>
     </a>
     `;
+        }
     }
     document.getElementById("productRelated").innerHTML = htmlProductsToAppend;
 }
 
-//COMENTARIOS
 
+//Comentarios
 function showComments(array) {
 
     let htmlCommentsToAppend = "";
@@ -80,7 +89,6 @@ function showComments(array) {
 
         let comentarios = array[i];
         let score = array[i].score;
-        //console.log(score);
 
         htmlCommentsToAppend += `
             <div class="container">
@@ -91,7 +99,6 @@ function showComments(array) {
             </div>
             <hr>
         `;
-        //console.log(comentarios); 
     }
     document.getElementById("commentscontainer").innerHTML = htmlCommentsToAppend;
 }
@@ -137,10 +144,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
             productsCostHTML.innerHTML = product.currency + " " + product.cost;
             productsDescriptionHTML.innerHTML = product.description;
 
-
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            productosRelacionado = product.relatedProducts;
         }
+
+        getJSONData(PRODUCTS_URL).then(function (resultObj) {
+            if (resultObj.status === "ok") {
+                productos = resultObj.data;
+                newArrayRelacionados(productos)
+
+            }
+        });
+
     });
 
 
@@ -149,17 +165,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
             comentarios = resultObj.data;
 
             showComments(comentarios)
-            //console.log(comentarios);
-        }
-    });
 
-    getJSONData(PRODUCTS_URL).then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            productos = resultObj.data;
-
-            newArray(productos);
-            //console.log(productos);
         }
+
+
     });
 
 
@@ -176,8 +185,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         mm = '0' + mm;
     }
 
-    today = yyyy+ '-' + mm + '-' + dd;
-    console.log(today);
+    today = yyyy + '-' + mm + '-' + dd;
 
     // Hora 
     var time = new Date
@@ -208,29 +216,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     }
     time = hour + ":" + minute + ":" + second;
-    console.log(time);
 
-    //usuario
 
+    //Usuario en formulario
     document.getElementById("usuariodecomenatario").innerHTML = localStorage.getItem("cuenta");
-    console.log(localStorage.getItem("cuenta"))
 
-    //Estrellas
-
+    //Mostrar estrellas
     document.getElementById("envioDeComentario").addEventListener('submit', function (event) {
-        event.preventDefault();
 
+        event.preventDefault();
         let publicar = '';
         let comentario = document.getElementById("publicarcomentario");
         let user = localStorage.getItem("cuenta");
         var value = myFunction();
-        
+
         publicar = `
         <div class="container">
         <p id="estrellas">`+ '<i class="fa fa-star text-yellow"></i>'.repeat(value) + `</p>
             <p class="usuario">` + user + `<br>` + `</p>
             <p>`+ comentario.value + `<br>` + `</p>
-            <p class="date">`+ today + " "+ time + `</p>
+            <p class="date">`+ today + " " + time + `</p>
         </div>`
 
         document.getElementById("comentarioreal").innerHTML = publicar;

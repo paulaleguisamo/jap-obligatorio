@@ -240,11 +240,9 @@ var arrayOriginal = currentProductsArray;
 document.getElementById("searchBar").addEventListener("keyup", function () {
     filterSearch = document.getElementById("searchBar").value;
     
-    //console.log(currentProductsArray);
     if (filterSearch != undefined) {
         arrayOriginal = currentProductsArray;
         currentProductsArray = currentProductsArray.filter(function (elemento) {
-            console.log(currentProductsArray);
             return elemento.name.toLowerCase().includes(filterSearch.toLowerCase())
         })
     }
@@ -252,6 +250,5 @@ document.getElementById("searchBar").addEventListener("keyup", function () {
 
 currentProductsArray = arrayOriginal;
 
-    //console.log(arrayOriginal);
 });
 

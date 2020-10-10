@@ -63,8 +63,8 @@ footer p {
   color: white;
 }
 
-.site-header .dropdown-menu a {
-  color: black;
+.site-header  a {
+  color: white;
 }
 
 .dropzone{
@@ -156,6 +156,13 @@ a.custom-card:hover {
   margin-left: 42%;
 }
 
+#productRelated {
+  display: flex;
+}
+
+.list-group-item.list-group-item-action{
+  margin: 1%;
+}
 
 .usuario { 
   font-weight: bold;
@@ -207,6 +214,43 @@ a.custom-card:hover {
   background-size: 30px;
 }
 
+.btn-secondary {
+ background-color: transparent;
+ border-color: transparent;
+}
 
+.dropdown-menu.show{
+  background-color: #343a40;
+ }
 
+ .dropdown-menu a{
+  color:white;
+ }
 
+ .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.dropdown-item:hover{
+  text-decoration: underline;
+  color: white;
+  background-color: transparent;
+ }
+
+ .row {
+   justify-content: center;
+ }
+
+#prev, #next{
+  background-color:#343a40;
+  width: 5%;
+  height: 25%;
+  margin-top:5%;
+}
+
+.titulos{
+  font-style: italic;
+}

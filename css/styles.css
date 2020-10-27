@@ -249,12 +249,36 @@ a.custom-card:hover {
   width: 5%;
   height: 25%;
   margin-top:5%;
-<<<<<<< HEAD
+
 }
 
-.titulos{
-  font-style: italic;
+.img-carrito{
+  width: 25%;
 }
-=======
+
+.table td{
+  vertical-align: baseline;
 }
->>>>>>> 31467170a0b1f7416d72feabe0913e438f40f5ba
+
+.subtotales {
+font-weight: 600;
+}
+
+.cantidadespacio{
+  width: 21%;
+}
+
+.cantidad {
+  width: 25%;
+  padding: 0%;
+  text-align: center;
+}
+
+.mb-3{
+  display: inline-block;
+}
+
+.validation{
+  font-size: 13px;
+}
+

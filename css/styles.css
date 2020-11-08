@@ -282,3 +282,12 @@ font-weight: 600;
   font-size: 13px;
 }
 
+.space_title {
+  padding: 1%;
+}
+
+.datos{
+  display: none;
+  font-weight: bold;
+  font-size: larger;
+}

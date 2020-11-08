@@ -113,6 +113,7 @@ function validaciones() {
             match.innerHTML = `<span></span>`
         } else {
             match.innerHTML = `<span class="text-muted validation">Ingrese un nombre de calle valida</span>`
+            e.preventDefault();
         }
 
 
@@ -124,6 +125,7 @@ function validaciones() {
             match2.innerHTML = `<span></span>`
         } else {
             match2.innerHTML = `<span class="text-muted validation">Ingrese un número de puerta valido</span>`
+            e.preventDefault();
         }
 
 
@@ -135,6 +137,7 @@ function validaciones() {
             match3.innerHTML = `<span></span>`
         } else {
             match3.innerHTML = `<span class="text-muted validation">Ingrese un nombre de calle valida</span>`
+            e.preventDefault();
         }
 
 
@@ -143,18 +146,21 @@ function validaciones() {
 
         if (selectValidatio.value == 0) {
             match4.innerHTML = `<span class="text-muted validation">Ingrese un país valido</span>`
+            e.preventDefault();
         } else {
             match4.innerHTML = `<span></span>`
         }
 
         if (!document.querySelector('input[name="envio"]:checked')) {
             document.getElementById("match_shipping").innerHTML = `<span class="text - muted validation">Seleccione una opción </span>`
+
             hasError = true;
+            e.preventDefault();
         } else {
             document.getElementById("match_shipping").innerHTML = `<span class="text - muted validation"> </span>`
         }
 
-        e.preventDefault();
+
 
     });
 

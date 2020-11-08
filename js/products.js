@@ -52,20 +52,18 @@ function showProductsList() {
             ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
 
             htmlContentToAppend += `
-            <a href="product-info.html?`+ products.name + `" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + products.imgSrc + `" alt="` + products.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ products.name + " " + " - " + products.currency + " " + products.cost + `</h4>
-                            <small class="text-muted">` + products.soldCount + " " + `productos vendidos </small>
-                        </div>
-                        <p class="mb-1">` + products.description + `</p>
-                    </div>
+         
+            <div class="space_title col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+            <a href="product-info.html?`+ products.name + `" class="card mb-4 shadow-sm custom-card">
+                <img src="` + products.imgSrc + `" alt="` + products.description + `" class="bd-placeholder-img card-img-top"">
+                <div class="card-body text-center">
+                    <h4>`+ products.name + `</h4>
+                    <h5>` + products.currency + " " + products.cost + `</h5>
+                    <small class="text-muted">` + products.soldCount + " " + `productos vendidos </small>
+                    <p class="card-text ">` + products.description + `</p>
                 </div>
             </a>
+            </div>
             `
         }
     } document.getElementById("products-list-container").innerHTML = htmlContentToAppend;
@@ -239,7 +237,7 @@ var arrayOriginal = currentProductsArray;
 
 document.getElementById("searchBar").addEventListener("keyup", function () {
     filterSearch = document.getElementById("searchBar").value;
-    
+
     if (filterSearch != undefined) {
         arrayOriginal = currentProductsArray;
         currentProductsArray = currentProductsArray.filter(function (elemento) {
@@ -248,7 +246,7 @@ document.getElementById("searchBar").addEventListener("keyup", function () {
     }
     showProductsList();
 
-currentProductsArray = arrayOriginal;
+    currentProductsArray = arrayOriginal;
 
 });
 
